@@ -1,6 +1,7 @@
 package com.learn.librarymanagement.controller;
 
 import com.learn.librarymanagement.dto.StudentRequest;
+import com.learn.librarymanagement.dto.StudentResponse;
 import com.learn.librarymanagement.model.Student;
 import com.learn.librarymanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class StudentController {
 
 
     @GetMapping("/student/getAll")
-    public ResponseEntity<List<Student>> getAll (@RequestBody Student student) throws ParseException{
-        List<Student> students = studentService.findAll();
+    public ResponseEntity<List<StudentResponse>> getAll () throws ParseException{
+        List<StudentResponse> students = studentService.findAll();
 
         if (students.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -41,15 +42,15 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable int id){
-        Student student = studentService.findStudent(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+    public ResponseEntity<StudentResponse> getStudentById(@PathVariable int id){
+        StudentResponse studentResponse = studentService.findStudent(id);
+        return new ResponseEntity<>(studentResponse, HttpStatus.OK);
     }
 
 
     @PostMapping("/students/update")
     public ResponseEntity<String> updateMobile(@RequestParam String mobile, @RequestParam int id){
-        Student updated = studentService.updateMobile(mobile,id);
+        StudentResponse updated = studentService.updateMobile(mobile,id);
         if (updated != null) {
             return new ResponseEntity<>("Mobile Number Updated Successfully", HttpStatus.OK);
         } else {

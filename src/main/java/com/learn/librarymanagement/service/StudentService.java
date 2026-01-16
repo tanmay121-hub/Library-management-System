@@ -2,7 +2,6 @@ package com.learn.librarymanagement.service;
 
 import com.learn.librarymanagement.dto.StudentRequest;
 import com.learn.librarymanagement.dto.StudentResponse;
-import com.learn.librarymanagement.model.Student;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -15,6 +14,6 @@ public interface StudentService {
     StudentResponse findStudent(int id);
 
     List<StudentResponse> findAll();
-    Student updateMobile(String mobile, int id);
-    StudentRequest findByMail(String mail);
+    StudentResponse updateMobile(String mobile, int id);
+    StudentResponse findByMail(String mail);
 }

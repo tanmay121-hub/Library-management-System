@@ -50,6 +50,7 @@ public class StudentServiceImp implements StudentService {
         student.setName(studentData.getName());
         student.setMobNo(studentData.getMobNo());
         student.setDepartment(studentData.getDepartment());
+        student.setMail(studentData.getMail());
 
         Card card = new Card();
         card.setCardstatus(Status.ACTIVATED);
@@ -82,17 +83,19 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public Student updateMobile(String mobile, int id) {
+    public StudentResponse updateMobile(String mobile, int id) {
         Student student = studentRepository.findById(id).orElse(null);
         if (student != null) {
             student.setMobNo(mobile);
-            return studentRepository.save(student);
+            Student updatedStudent = studentRepository.save(student);
+            return mapToResponse(updatedStudent);
         }
         return null;
     }
 
     @Override
-    public StudentRequest findByMail(String mail) {
-        return studentRepository.findByMail(mail);
+    public StudentResponse findByMail(String mail) {
+        StudentResponse student = studentRepository.findByMail(mail);
+        return student;
     }
 }

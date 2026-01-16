@@ -1,4 +1,71 @@
 package com.learn.librarymanagement.model;
 
+import com.learn.librarymanagement.enums.Genre;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "book")
 public class Book {
+    //bookId,title,genre , price, noofpages,author
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int bookId;
+    private String title;
+    private int price;
+    private int noOfPages;
+
+    @Enumerated(EnumType.STRING)
+    Genre genre;
+
+    public Book() {
+    }
+
+    public Book(int bookId, String title, int price, int noOfPages, Genre genre) {
+        this.bookId = bookId;
+        this.title = title;
+        this.price = price;
+        this.noOfPages = noOfPages;
+        this.genre = genre;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getNoOfPages() {
+        return noOfPages;
+    }
+
+    public void setNoOfPages(int noOfPages) {
+        this.noOfPages = noOfPages;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 }
