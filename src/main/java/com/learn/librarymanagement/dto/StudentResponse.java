@@ -21,6 +21,9 @@ public class StudentResponse {
     private Status cardStatus;
     private Date cardExpiryDate;
 
+    public StudentResponse() {
+    }
+
     public int getAge() {
         return age;
     }

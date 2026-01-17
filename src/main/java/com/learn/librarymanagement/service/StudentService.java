@@ -16,4 +16,5 @@ public interface StudentService {
     List<StudentResponse> findAll();
     StudentResponse updateMobile(String mobile, int id);
     StudentResponse findByMail(String mail);
+    String deleteById(int id);
 }

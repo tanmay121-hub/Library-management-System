@@ -98,4 +98,10 @@ public class StudentServiceImp implements StudentService {
         StudentResponse student = studentRepository.findByMail(mail);
         return student;
     }
+
+    @Override
+    public String deleteById(int id) {
+        studentRepository.deleteById(id);
+        return "Deleted Successfully";
+    }
 }

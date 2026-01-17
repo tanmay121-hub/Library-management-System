@@ -58,5 +58,10 @@ public class StudentController {
         }
     }
 
+    @DeleteMapping("/students")
+    public ResponseEntity<String> deleteById(@RequestParam int id){
+        studentService.deleteById(id);
+        return ResponseEntity.ok("Student deleted successfully");
+    }
 
 }
