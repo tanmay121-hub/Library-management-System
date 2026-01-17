@@ -15,6 +15,7 @@ public class Book {
     private String title;
     private int price;
     private int noOfPages;
+    private boolean isIssued = false; // Default is false (Available)
 
     @Enumerated(EnumType.STRING)
     Genre genre;
@@ -34,6 +35,14 @@ public class Book {
         this.noOfPages = noOfPages;
         this.genre = genre;
         this.author = author;
+    }
+
+    public boolean isIssued() {
+        return isIssued;
+    }
+
+    public void setIssued(boolean issued) {
+        isIssued = issued;
     }
 
     public String getTitle() {

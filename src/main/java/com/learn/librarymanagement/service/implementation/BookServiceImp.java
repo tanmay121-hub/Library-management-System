@@ -7,9 +7,11 @@ import com.learn.librarymanagement.repository.AuthorRepository;
 import com.learn.librarymanagement.repository.BookRepository;
 import com.learn.librarymanagement.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BookServiceImp implements BookService {
 
     @Autowired

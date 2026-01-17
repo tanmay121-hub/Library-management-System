@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/student")
 public class StudentController {
 
     private final StudentService studentService;
