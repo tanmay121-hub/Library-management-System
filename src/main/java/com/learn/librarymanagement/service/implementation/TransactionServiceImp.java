@@ -70,4 +70,38 @@ public class TransactionServiceImp implements TransactionService {
     public List<Transaction> getAll() {
         return transactionRepository.findAll();
     }
+
+    @Override
+    public String returnBook(int cardId, int bookId){
+        Transaction transaction = transactionRepository.findByCard_CardIdAndBook_BookIdAndTransactionStatus(cardId,bookId,TransactionStatus.ISSUED);
+
+        if (transaction== null){
+            return "Transaction not found! Either book was not issued or card ID is wrong.";
+        }
+
+        Book book = transaction.getBook();
+        Date issueDate = transaction.getIssueDate();
+        Date returnDate = new Date();
+
+        long timediff = Math.abs(returnDate.getTime() - issueDate.getTime());
+        long daysPassed = java.util.concurrent.TimeUnit.DAYS.convert(timediff, java.util.concurrent.TimeUnit.MILLISECONDS);
+
+        int loanDays = 15;  //free days
+        double fineAmount = 0.0;
+
+        if (daysPassed>loanDays){
+            int extraDays = (int) (daysPassed - loanDays);
+            fineAmount = extraDays * 5.0; // 5 Rupees per day
+        }
+
+        transaction.setAmount(fineAmount);
+        transaction.setReturnDate(returnDate);
+        transaction.setTransactionStatus(TransactionStatus.RETURNED);
+
+        book.setIssued(false);
+        transactionRepository.save(transaction);
+        bookRepository.save(book);
+        return "Book Returned Successfully. Fine Amount: " + fineAmount;
+    }
+
 }

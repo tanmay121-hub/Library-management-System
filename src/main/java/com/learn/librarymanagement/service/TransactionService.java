@@ -9,4 +9,5 @@ public interface TransactionService {
     public String issueBook(int cardId, int bookId);
     Transaction findById(int id);
     List<Transaction> getAll();
+    public String returnBook(int cardId, int bookId);
 }

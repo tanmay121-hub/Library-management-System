@@ -24,16 +24,21 @@ public class TransactionController {
         return new ResponseEntity<>("Successfully Issued Book",HttpStatus.CREATED);
     }
 
-    @GetMapping("searchById/{id}")
+    @GetMapping("/searchById/{id}")
     public ResponseEntity<Transaction> getById(int id){
         Transaction studentResponse = transactionService.findById(id);
         return new ResponseEntity<>(studentResponse, HttpStatus.OK);
     }
 
-    @GetMapping("All")
+    @GetMapping("/All")
     public ResponseEntity<List<Transaction>> getAll(){
         List<Transaction> trans = transactionService.getAll();
         return new ResponseEntity<>(trans,HttpStatus.OK);
+    }
+    @PostMapping("/return")
+    public ResponseEntity<String> returnBook(@RequestParam("card_id") int cardId, @RequestParam("book_Id") int bookId){
+        transactionService.returnBook(cardId, bookId);
+        return new ResponseEntity<>("",HttpStatus.OK);
     }
 
 }
