@@ -1,5 +1,6 @@
 package com.learn.librarymanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.learn.librarymanagement.enums.Genre;
 import jakarta.persistence.*;
 
@@ -18,15 +19,21 @@ public class Book {
     @Enumerated(EnumType.STRING)
     Genre genre;
 
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnore
+    private Author author;
+
     public Book() {
     }
 
-    public Book(int bookId, String title, int price, int noOfPages, Genre genre) {
+    public Book(int bookId, String title, int price, int noOfPages, Genre genre, Author author) {
         this.bookId = bookId;
         this.title = title;
         this.price = price;
         this.noOfPages = noOfPages;
         this.genre = genre;
+        this.author = author;
     }
 
     public String getTitle() {
@@ -67,5 +74,13 @@ public class Book {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

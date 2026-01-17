@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@Table(name = "author")
 public class Author {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
