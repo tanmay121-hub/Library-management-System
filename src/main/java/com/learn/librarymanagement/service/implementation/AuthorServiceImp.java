@@ -54,7 +54,7 @@ public class AuthorServiceImp implements AuthorService {
 
     @Override
     public List<AuthorResponseDto> findAllAuthors() {
-        List<Author> authors = authorRepository.findAll();
+        List<Author> authors = authorRepository.findAllAuthorsWithBooks();
         List<AuthorResponseDto> responseList = new ArrayList<>();
 
         for (Author author : authors) {
